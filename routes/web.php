@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::namespace('App\Http\Controllers')->get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
-Route::middleware(['headers'])->namespace('App\Http\Controllers')->group(function () {
+Route::middleware(['headers'])->group(function () {
     // show login form
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
     // handle login request
