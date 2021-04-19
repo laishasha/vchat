@@ -10,7 +10,7 @@
                     {{ __('Register') }}
                 </header>
 
-                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST"
+                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" enctype="multipart/form-data"
                     action="{{ route('register') }}">
                     @csrf
 
@@ -19,7 +19,7 @@
                             {{ __('Username') }}:
                         </label>
 
-                        <input id="username" type="text" class="form-input w-full @error('username')  border-red-500 @enderror"
+                        <input id="username" type="text" class="form-input w-full border @error('username')  border-red-500 @enderror"
                             name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                         @error('username')
@@ -34,7 +34,7 @@
                             {{ __('Nick Name') }}:
                         </label>
 
-                        <input id="nickname" type="text" class="form-input w-full @error('nickname')  border-red-500 @enderror"
+                        <input id="nickname" type="text" class="form-input w-full border @error('nickname')  border-red-500 @enderror"
                             name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname">
 
                         @error('nickname')
@@ -50,7 +50,7 @@
                         </label>
 
                         <input id="email" type="email"
-                            class="form-input w-full @error('email') border-red-500 @enderror" name="email"
+                            class="form-input w-full border @error('email') border-red-500 @enderror" name="email"
                             value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
@@ -66,7 +66,7 @@
                         </label>
 
                         <input id="password" type="password"
-                            class="form-input w-full @error('password') border-red-500 @enderror" name="password"
+                            class="form-input w-full border @error('password') border-red-500 @enderror" name="password"
                             required autocomplete="new-password">
 
                         @error('password')
@@ -81,7 +81,7 @@
                             {{ __('Confirm Password') }}:
                         </label>
 
-                        <input id="password-confirm" type="password" class="form-input w-full"
+                        <input id="password-confirm" type="password" class="form-input w-full border"
                             name="password_confirmation" required autocomplete="new-password">
                     </div>
 
@@ -92,6 +92,12 @@
 
                         <input id="avatar" type="file" class="form-input w-full"
                             name="avatar" required>
+
+                        @error('avatar')
+                        <p class="text-red-500 text-xs italic mt-4">
+                            {{ $message }}
+                        </p>
+                        @enderror
                     </div>
 
                     <div class="flex flex-wrap">

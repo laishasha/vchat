@@ -32,8 +32,7 @@
                         @endif
                     @else
                         <span>{{ Auth::user()->nickname }}</span>
-                        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="{{ Auth::user()->avatar }}" alt="">
-
+			<img class="rounded-full h-24 w-24 flex items-center justify-center" src="images/{{ Auth::user()->avatar }}" alt="avatar">
                         <a href="{{ route('logout') }}"
                            class="no-underline hover:underline"
                            onclick="event.preventDefault();
