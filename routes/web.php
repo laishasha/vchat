@@ -13,11 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'HomeController@index');
+
+Route::middleware(['headers'])->group(function () {
+    // show login form
+    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+    // handle login request
+    Route::post('/login', 'Auth\LoginController@login');
+    // handle logout request
+    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+    // show registration form
+    Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    // handle registration request
+    Route::post('/register', 'Auth\RegisterController@register');
 });
 
-Auth::routes();
 
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['headers, auth'])->group(function () {
+        Route::get('/home', 'HomeController@index')->name('home');
+    });
 

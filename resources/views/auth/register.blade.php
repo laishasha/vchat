@@ -16,13 +16,28 @@
 
                     <div class="flex flex-wrap">
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Name') }}:
+                            {{ __('Username') }}:
                         </label>
 
-                        <input id="name" type="text" class="form-input w-full @error('name')  border-red-500 @enderror"
-                            name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <input id="username" type="text" class="form-input w-full @error('username')  border-red-500 @enderror"
+                            name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
-                        @error('name')
+                        @error('username')
+                        <p class="text-red-500 text-xs italic mt-4">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+
+                    <div class="flex flex-wrap">
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
+                            {{ __('Nick Name') }}:
+                        </label>
+
+                        <input id="nickname" type="text" class="form-input w-full @error('nickname')  border-red-500 @enderror"
+                            name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname">
+
+                        @error('nickname')
                         <p class="text-red-500 text-xs italic mt-4">
                             {{ $message }}
                         </p>
@@ -68,6 +83,15 @@
 
                         <input id="password-confirm" type="password" class="form-input w-full"
                             name="password_confirmation" required autocomplete="new-password">
+                    </div>
+
+                    <div class="flex flex-wrap">
+                        <label for="avatar" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
+                            {{ __('Avatar') }}:
+                        </label>
+
+                        <input id="avatar" type="file" class="form-input w-full"
+                            name="avatar" required>
                     </div>
 
                     <div class="flex flex-wrap">

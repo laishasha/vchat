@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    
+
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
@@ -31,7 +31,8 @@
                             <a class="no-underline hover:underline" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @else
-                        <span>{{ Auth::user()->name }}</span>
+                        <span>{{ Auth::user()->nickname }}</span>
+                        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="{{ Auth::user()->avatar }}" alt="">
 
                         <a href="{{ route('logout') }}"
                            class="no-underline hover:underline"
