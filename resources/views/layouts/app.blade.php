@@ -16,36 +16,70 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none font-sans">
-    <div id="app">
-        <header class="bg-blue-900 py-6">
-            <div class="container mx-auto flex justify-between items-center px-6">
-                <div>
-                    <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-                <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
-                    @guest
-                        <a class="no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        @if (Route::has('register'))
-                            <a class="no-underline hover:underline" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        @endif
-                    @else
-                        <span>{{ Auth::user()->nickname }}</span>
-			<img class="rounded-full h-24 w-24 flex items-center justify-center" src="images/{{ Auth::user()->avatar }}" alt="avatar">
-                        <a href="{{ route('logout') }}"
-                           class="no-underline hover:underline"
-                           onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                            {{ csrf_field() }}
-                        </form>
-                    @endguest
-                </nav>
-            </div>
-        </header>
+<div id="app">
+    <div class="flex-1 flex flex-col">
+        <nav class="px-4 flex justify-between bg-white h-16 border-b-2">
 
-        @yield('content')
+            <!-- top bar left -->
+            <ul class="flex items-center">
+                <!-- add button -->
+                <li class="h-6 w-6">
+
+                </li>
+            </ul>
+
+            <ul class="flex items-center">
+                <!-- add button -->
+                <li>
+                    <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
+                        <h1 class="pl-8 lg:pl-0"> {{ config('app.name', 'Laravel') }}</h1>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- to bar right  -->
+            <ul class="flex items-center">
+
+                <li class="pr-6">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-bell">
+                        <path
+                            d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </li>
+                <li class="h-10 w-10">
+                    <img
+                        class="h-full w-full rounded-full mx-auto"
+                        src="images/{{ Auth::user()->avatar }}"
+                        alt="avatar"/>
+                </li>
+                <li class="h-10 w-10">
+                    <span>{{ Auth::user()->nickname }}</span>
+                </li>
+                <li class="h-10 w-10">
+                    <a href="{{ route('logout') }}"
+                       class="no-underline hover:underline"
+                       onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+            </ul>
+
+        </nav>
     </div>
+    @yield('content')
+</div>
 </body>
 </html>
