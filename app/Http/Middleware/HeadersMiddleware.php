@@ -15,7 +15,9 @@ class HeadersMiddleware
             $response->header('X-Frame-Options', 'deny'); //protect against 'ClickJacking' attacks.
             $response->header('X-Content-Type-Options', 'nosniff');
             $response->header('X-XSS-Protection', 1);
-            $response->header('Cache-Control', 'no-cache');
+	    $response->header('Cache-Control', ['no-cache', 'no-store', 'must-revalidate']); // HTTP 1.1.
+	    $response->header('Pragma', 'no-cache'); // HTTP 1.0.
+	    $response->header('Expires', '0'); // Proxies.
         }
         return $response;
     }

@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
 
 Route::middleware(['headers'])->group(function () {
+    Route::get('/', 'HomeController@index');
+ 
     // show login form
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
     // handle login request
@@ -30,7 +31,7 @@ Route::middleware(['headers'])->group(function () {
 });
 
 
-Route::middleware(['headers, auth'])->namespace('App\Http\Controllers')->group(function () {
+Route::middleware(['headers', 'auth'])->group(function () {
         Route::get('/home', 'HomeController@index')->name('home');
     });
 
