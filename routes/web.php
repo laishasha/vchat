@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['headers'])->group(function () {
     Route::get('/', 'HomeController@index');
- 
+
     // show login form
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
     // handle login request
@@ -28,10 +28,21 @@ Route::middleware(['headers'])->group(function () {
     Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     // handle registration request
     Route::post('/register', 'Auth\RegisterController@register');
+
+//    Route::get('/resetPassword', 'Auth\ResetController@showResetForm')->name('password.reset');
+//    Route::post('/resetPassword', 'Auth\ResetController@resetPassword');
 });
 
 
 Route::middleware(['headers', 'auth'])->group(function () {
-        Route::get('/home', 'HomeController@index')->name('home');
-    });
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('info', 'Auth\ResetController@showInfo')->name('info.show');
+//    Route::get('info/edit', 'Auth\ResetController@editInfo')->name('info.edit');
+//    Route::patch('info/change', 'Auth\ResetController@updateInfo')->name('info.update');
+
+    Route::get('/friends/index', 'FriendController@index')->name('friends.index');
+    Route::get('/friends/add', 'FriendController@index')->name('friends.add');
+    Route::get('/friends/remove', 'FriendController@index')->name('friends.remove');
+});
 
