@@ -21,4 +21,14 @@ class Friend extends Model
     {
         return $this->hasMany('App\Models\User', 'id', 'friend_id');
     }
+
+    public function scopePending($query)
+    {
+        return $query->where('accept', 0);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('accept', 1);
+    }
 }

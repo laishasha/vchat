@@ -14,9 +14,10 @@ class CreateFriendsTable extends Migration
     public function up()
     {
         Schema::create('friends', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('friend_id');
-            $table->boolean('accept');
+            $table->boolean('accept')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateFriendsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('friends');
     }
 }

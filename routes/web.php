@@ -42,7 +42,10 @@ Route::middleware(['headers', 'auth'])->group(function () {
 //    Route::patch('info/change', 'Auth\ResetController@updateInfo')->name('info.update');
 
     Route::get('/friends/index', 'FriendController@index')->name('friends.index');
-    Route::get('/friends/add', 'FriendController@index')->name('friends.add');
-    Route::get('/friends/remove', 'FriendController@index')->name('friends.remove');
+    Route::post('/friends/add/{id}', 'FriendController@add')->name('friends.add');
+    Route::post('/friends/remove/{id}', 'FriendController@remove')->name('friends.remove');
+    Route::post('/friends/accept/{id}', 'FriendController@accept')->name('friends.accept');
+    Route::post('/friends/reject/{id}', 'FriendController@reject')->name('friends.reject');
+    Route::post('/friends/cancel/{id}', 'FriendController@cancel')->name('friends.cancel');
 });
 

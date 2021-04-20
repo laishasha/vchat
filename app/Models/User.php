@@ -50,6 +50,11 @@ class User extends Authenticatable
 
     public function friends()
     {
-        return $this->hasMany('App\Models\Friend', 'id', 'friend_id');
+        return $this->hasMany('App\Models\Friend', 'friend_id', 'id');
+    }
+
+    public function activeFriends()
+    {
+        return $this->friends()->active();
     }
 }
