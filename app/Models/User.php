@@ -17,8 +17,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'username',
+        'nickname',
         'email',
+        'avatar',
         'password',
     ];
 
@@ -40,4 +42,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeExcluded($query, $excludedIds)
+    {
+        return $query->whereNotIn('id', $excludedIds);
+    }
+
+    public function friends()
+    {
+        return $this->hasMany('App\Models\Friend', 'friend_id', 'id');
+    }
+
+    public function activeFriends()
+    {
+        return $this->friends()->active();
+    }
 }
